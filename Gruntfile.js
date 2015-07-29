@@ -42,7 +42,11 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
-        // Add filespec list here
+      target: {
+        files: {
+          'lib/style.min.css': ['lib/style.css']
+        }
+      }
     },
 
     watch: {
