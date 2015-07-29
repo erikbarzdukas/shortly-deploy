@@ -21,6 +21,10 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      my_target: {
+        src: 'public/client/**/*.js',
+        dest: 'public/client/shortly.min.js'
+      }
     },
 
     jshint: {
