@@ -10,7 +10,7 @@ var urlSchema = new Schema({
   created_at: {time: Date, default: Date.now}
 });
 
-var usersSchema = new Schema({
+var userSchema = new Schema({
   username: String,
   password: String,
   created_at: {time: Date, default: Date.now}
