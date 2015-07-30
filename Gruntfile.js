@@ -49,9 +49,10 @@ module.exports = function(grunt) {
       }
     },
 
-    processHtml: {
+    processhtml: {
       target: {
-        'views/layout.ejs' : ['views/layout.ejs']
+        src: 'views/layout.ejs',
+        dest: 'views/layout.ejs'
       }
     },
 
@@ -114,19 +115,21 @@ module.exports = function(grunt) {
     'mochaTest',
     'jshint',
     'uglify',
-    'cssmin'
+    'cssmin',
+    'processhtml'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-      // add your production server task here
+      'git push azure master'
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
-      // add your production server task here
+      'build', 
+      'upload'
   ]);
 
 
