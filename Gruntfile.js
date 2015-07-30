@@ -23,13 +23,13 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         src: 'public/client/**/*.js',
-        dest: 'public/client/shortly.min.js'
+        dest: 'public/shortly.min.js'
       }
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+        'public/client/**/*.js'
       ],
       options: {
         force: 'true',
@@ -44,8 +44,14 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'lib/style.min.css': ['lib/style.css']
+          'public/style.min.css': 'public/style.css'
         }
+      }
+    },
+
+    processHtml: {
+      target: {
+        'views/layout.ejs' : ['views/layout.ejs']
       }
     },
 
@@ -82,6 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-processhtml');
 
+
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
     var nodemon = grunt.util.spawn({
@@ -104,6 +111,10 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'mochaTest',
+    'jshint',
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
